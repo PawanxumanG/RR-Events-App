@@ -86,6 +86,23 @@ body{
     transform:scale(.97);
 }
 
+/* BACK BUTTON */
+.back-btn{
+    margin-top:16px;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    color:#fff;
+    background:#242424;
+}
+.back-btn:active{
+    transform:scale(.97);
+}
+
 /* FOOT NOTE */
 .note{
     margin-top:14px;
@@ -123,13 +140,18 @@ body{
         📤 Share App via WhatsApp
     </button>
 
+    <!-- BACK BUTTON -->
+    <button class="back-btn" onclick="goHome()">
+        ⬅ Back to Home
+    </button>
+
     <p class="note">
-        R.R. INTERNATIONAL COLLEGE 
+        R.R. INTERNATIONAL COLLEGE
     </p>
 
 </div>
 
-<!-- SCRIPT (WORKING SHARE) -->
+<!-- SCRIPT -->
 <script>
 function shareApp(){
 
@@ -141,18 +163,19 @@ Stay updated with official college notices, events & announcements.
 ⬇ Download here:
 https://www.mediafire.com/file/dhbz117yhele5i8/RR_Events_App_2.1.apk/file`;
 
-    // Best case (modern Android)
     if (navigator.share) {
         navigator.share({
             title: "RR Events App",
             text: message
         }).catch(()=>{});
-    }
-    // Fallback (always works in WebView)
-    else {
+    } else {
         const url = "https://wa.me/?text=" + encodeURIComponent(message);
         window.location.href = url;
     }
+}
+
+function goHome(){
+    history.back(); // safe for WebView
 }
 </script>
 
