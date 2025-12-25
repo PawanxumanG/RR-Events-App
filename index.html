@@ -133,6 +133,26 @@ gtag('event','home_loaded');
     color:#e6e6e6;
     font-weight:600;
 }
+
+/* ===== NOTICE UPDATE TOGGLE ===== */
+.update-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:12px;
+    cursor:pointer;
+}
+.update-header b{color:#ff9800}
+.update-toggle{
+    font-size:13px;
+    color:#ff9800;
+}
+.update-content{
+    display:none;
+    margin-top:10px;
+    font-size:14px;
+    line-height:1.6;
+}
 </style>
 </head>
 
@@ -153,24 +173,41 @@ gtag('event','home_loaded');
 👨‍🏫 OUR CHAIRMAN – Shri R. R. Pardeshi
 </button>
 
+<!-- ================= NOTICE SECTION (UPDATED ONLY HERE) ================= -->
 <div class="event">
   <h2>📢 IMPORTANT NOTICE</h2>
 
-  <p>All students are instructed to <b>open this app daily</b> for official notices, event updates, and important announcements.</p>
+  <p>
+    All students are instructed to <b>open this app daily</b> for official notices,
+    event updates, and important announcements.
+  </p>
 
-  <p>🆕 <b>New App Updates:</b><br>
-  We have upgraded the <b>RR Events App</b> with a smoother interface, faster navigation, and improved features.</p>
+  <p class="text-muted">
+    📌 All updates will be published only in this app.
+  </p>
 
-  <p>🎮 <b>RR Games Zone Updated:</b><br>
-  New brain games like <b>2048</b> have been added.</p>
+  <!-- COLLAPSIBLE UPDATES -->
+  <div class="update-header" onclick="toggleUpdates()">
+    <b>🆕 New App Updates (v2.1)</b>
+    <span class="update-toggle" id="updateToggle">Tap to open</span>
+  </div>
 
-  <p>🚀 <b>What’s New:</b><br>
-  • Improved Student Helper 🤖<br>
-  • Better Karmanya 2025 Countdown ⏳<br>
-  • Faster loading ✨</p>
+  <div class="update-content" id="updateContent">
+    <p>
+      We have upgraded the <b>RR Events App</b> with better performance
+      and future-ready systems.
+    </p>
 
-  <p class="text-muted">📌 All updates will be published only in this app.</p>
+    <p>
+      🚀 <b>What’s New:</b><br>
+      • Force update system added 🔐<br>
+      • Image & PDF download support ⬇️<br>
+      • Improved Event Album 📸<br>
+      • Faster loading & stability ✨
+    </p>
+  </div>
 </div>
+<!-- ====================================================================== -->
 
 <div class="streak-mini">
 🔥 Daily Streak
@@ -202,7 +239,6 @@ gtag('event','home_loaded');
   <button class="btn-events" onclick="trackAndGo('events')">📅 Events</button>
 </div>
 
-<!-- 🔻 POWERED BY -->
 <div class="app-footer">
   <span class="powered-text">Powered by </span>
   <span class="powered-brand">RR International College</span>
@@ -235,6 +271,14 @@ function toggleAI(){
   box.style.display=box.style.display==="block"?"none":"block";
   t.innerText=box.style.display==="block"?"Tap to close":"Tap to open";
 }
+
+function toggleUpdates(){
+  const box=document.getElementById("updateContent");
+  const t=document.getElementById("updateToggle");
+  box.style.display=box.style.display==="block"?"none":"block";
+  t.innerText=box.style.display==="block"?"Tap to close":"Tap to open";
+}
+
 function aiReply(type){
   document.getElementById("aiAnswer").innerText =
   type==="payment"
