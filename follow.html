@@ -41,13 +41,13 @@ body{
 
 /* ===== CARD ===== */
 .social-card{
-    background:#161616;
-    border-radius:18px;
+    background:#151515;
+    border-radius:20px;
     padding:18px;
     margin-bottom:18px;
     display:flex;
     align-items:center;
-    box-shadow:0 14px 30px rgba(0,0,0,.7);
+    box-shadow:0 16px 36px rgba(0,0,0,.75);
     cursor:pointer;
     transition:transform .15s ease;
 }
@@ -57,28 +57,46 @@ body{
 
 /* ===== ICON BASE ===== */
 .social-icon{
-    width:56px;
-    height:56px;
-    border-radius:16px;
+    width:58px;
+    height:58px;
+    border-radius:18px;
     display:flex;
     align-items:center;
     justify-content:center;
     margin-right:16px;
-    font-size:24px;
-    font-weight:900;
-    color:#fff;
 }
 
-/* ===== INSTAGRAM (PREMIUM) ===== */
+/* ===== INSTAGRAM – NEW PREMIUM STYLE ===== */
 .instagram{
     background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af);
-    box-shadow:0 0 18px rgba(221,42,123,.45);
+    position:relative;
+}
+.instagram::before{
+    content:"";
+    width:30px;
+    height:30px;
+    border:2.5px solid rgba(255,255,255,.9);
+    border-radius:50%;
+}
+.instagram::after{
+    content:"";
+    position:absolute;
+    top:16px;
+    right:16px;
+    width:6px;
+    height:6px;
+    background:#fff;
+    border-radius:50%;
 }
 
-/* ===== YOUTUBE ===== */
+/* ===== YOUTUBE (UNCHANGED) ===== */
 .youtube{
     background:linear-gradient(135deg,#ff3b3b,#c40000);
     box-shadow:0 0 18px rgba(255,59,59,.45);
+}
+.youtube span{
+    font-size:22px;
+    font-weight:900;
 }
 
 /* ===== TEXT ===== */
@@ -122,10 +140,10 @@ body{
 
 <div class="container">
 
-    <!-- INSTAGRAM -->
+    <!-- INSTAGRAM (NEW LOOK) -->
     <div class="social-card"
         onclick="location.href='https://www.instagram.com/r.r._international_college'">
-        <div class="social-icon instagram">◎</div>
+        <div class="social-icon instagram"></div>
         <div class="social-text">
             <h2>Instagram</h2>
             <p>Photos • Reels • Updates</p>
@@ -135,7 +153,7 @@ body{
     <!-- YOUTUBE -->
     <div class="social-card"
         onclick="location.href='https://youtube.com/@r.r.internationalcollege2009?si=lXEvp3K2hyTdyg_z'">
-        <div class="social-icon youtube">▶</div>
+        <div class="social-icon youtube"><span>▶</span></div>
         <div class="social-text">
             <h2>YouTube</h2>
             <p>Official Channel • Events • Highlights</p>
