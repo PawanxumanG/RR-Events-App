@@ -6,15 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{
-    box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 body{
     margin:0;
     font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial;
     background:#0f1117;
-    color:#ffffff;
+    color:#fff;
 }
 
 /* HEADER */
@@ -23,25 +20,13 @@ body{
     padding:22px 16px;
     text-align:center;
 }
-.header h1{
-    margin:0;
-    font-size:22px;
-    font-weight:800;
-}
-.header p{
-    margin-top:6px;
-    font-size:14px;
-    opacity:.9;
-}
+.header h1{margin:0;font-size:22px;font-weight:800;}
+.header p{margin-top:6px;font-size:14px;opacity:.9}
 
 /* CONTAINER */
-.container{
-    padding:20px;
-    max-width:420px;
-    margin:auto;
-}
+.container{padding:20px;max-width:420px;margin:auto;}
 
-/* QUIZ CARD */
+/* CARD */
 .quiz-card{
     background:#161a22;
     border-radius:18px;
@@ -50,18 +35,16 @@ body{
     box-shadow:0 0 30px rgba(0,0,0,.7);
 }
 
-/* EMOJI */
-.emoji{
-    font-size:48px;
-    margin-bottom:14px;
+/* LEVEL */
+.level{
+    font-size:13px;
+    color:#ff9800;
+    margin-bottom:10px;
 }
 
-/* QUESTION */
-.question{
-    font-size:18px;
-    font-weight:700;
-    margin-bottom:18px;
-}
+/* EMOJI */
+.emoji{font-size:48px;margin-bottom:14px;}
+.question{font-size:18px;font-weight:700;margin-bottom:18px;}
 
 /* OPTIONS */
 .option{
@@ -75,22 +58,13 @@ body{
     background:#1f2937;
     color:#fff;
     cursor:pointer;
-    transition:.15s ease;
 }
-.option:active{
-    transform:scale(.97);
-}
-
-/* CORRECT / WRONG */
-.correct{background:#16a34a;}
-.wrong{background:#dc2626;}
+.option:active{transform:scale(.97)}
+.correct{background:#16a34a}
+.wrong{background:#dc2626}
 
 /* SCORE */
-.score{
-    margin-top:14px;
-    font-size:14px;
-    opacity:.85;
-}
+.score{margin-top:14px;font-size:14px;opacity:.85}
 
 /* NEXT */
 .next-btn{
@@ -101,9 +75,8 @@ body{
     border-radius:14px;
     font-size:16px;
     font-weight:700;
-    color:#fff;
-    cursor:pointer;
     background:linear-gradient(135deg,#ff9800,#ff2e63);
+    color:#fff;
     display:none;
 }
 
@@ -118,7 +91,6 @@ body{
     color:#fff;
     font-size:16px;
     font-weight:700;
-    cursor:pointer;
 }
 </style>
 </head>
@@ -127,110 +99,145 @@ body{
 
 <div class="header">
     <h1>😄 Emoji Quiz</h1>
-    <p>Guess the word from emojis</p>
+    <p>Easy → Medium → Hard</p>
 </div>
 
 <div class="container">
+<div class="quiz-card">
 
-    <div class="quiz-card">
-        <div class="emoji" id="emoji">🎓📚</div>
-        <div class="question" id="question">What does this mean?</div>
+    <div class="level" id="level">Level: Easy</div>
+    <div class="emoji" id="emoji">🎓📚</div>
+    <div class="question">Guess the word</div>
 
-        <button class="option" onclick="checkAnswer(this)">College</button>
-        <button class="option" onclick="checkAnswer(this)">School</button>
-        <button class="option" onclick="checkAnswer(this)">Library</button>
-        <button class="option" onclick="checkAnswer(this)">Exam</button>
+    <button class="option" onclick="check(this)"></button>
+    <button class="option" onclick="check(this)"></button>
+    <button class="option" onclick="check(this)"></button>
+    <button class="option" onclick="check(this)"></button>
 
-        <div class="score" id="score">Score: 0 / 0</div>
-
-        <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Next ➜</button>
-    </div>
-
-    <button class="back-btn" onclick="history.back()">⬅ Back</button>
+    <div class="score" id="score">Score: 0</div>
+    <button class="next-btn" id="next" onclick="next()">Next ➜</button>
 
 </div>
 
+<button class="back-btn" onclick="history.back()">⬅ Back</button>
+</div>
+
 <script>
-const quiz = [
-  {
-    emoji:"🎓📚",
-    answer:"College",
-    options:["College","School","Library","Exam"]
-  },
-  {
-    emoji:"🎤🎶🔥",
-    answer:"Concert",
-    options:["Dance","Concert","DJ","Festival"]
-  },
-  {
-    emoji:"🏏🇮🇳",
-    answer:"Cricket",
-    options:["Football","Cricket","Hockey","Kabaddi"]
-  },
-  {
-    emoji:"📱📸",
-    answer:"Instagram",
-    options:["Facebook","WhatsApp","Instagram","Snapchat"]
-  },
-  {
-    emoji:"🍕🍔",
-    answer:"Fast Food",
-    options:["Dinner","Fast Food","Lunch","Party"]
-  }
+// 🔀 SHUFFLE
+function shuffle(arr){
+    for(let i=arr.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [arr[i],arr[j]]=[arr[j],arr[i]];
+    }
+}
+
+// 🧠 100+ QUESTIONS
+const allQuiz = [
+/* EASY */
+{e:"🎓📚",a:"College",o:["College","School","Library","Exam"]},
+{e:"🏏🇮🇳",a:"Cricket",o:["Football","Cricket","Hockey","Kabaddi"]},
+{e:"🍕🍔",a:"Fast Food",o:["Dinner","Fast Food","Party","Lunch"]},
+{e:"📱📸",a:"Instagram",o:["Facebook","Instagram","WhatsApp","Snapchat"]},
+{e:"☕🍪",a:"Tea Break",o:["Tea Break","Breakfast","Snack","Coffee"]},
+{e:"🎧🎶",a:"Music",o:["Radio","Podcast","Music","DJ"]},
+{e:"📖✏️",a:"Study",o:["Homework","Study","Exam","Notes"]},
+{e:"🍫❤️",a:"Chocolate",o:["Cake","Chocolate","Love","Gift"]},
+{e:"🚗💨",a:"Car",o:["Bike","Bus","Car","Taxi"]},
+{e:"📸🤳",a:"Selfie",o:["Photo","Camera","Selfie","Video"]},
+{e:"🏫🧑‍🏫",a:"School",o:["College","Office","School","Class"]},
+{e:"🍎🍌",a:"Fruits",o:["Vegetables","Fruits","Juice","Salad"]},
+{e:"🛏️😴",a:"Sleep",o:["Sleep","Dream","Bed","Lazy"]},
+{e:"🎮🕹️",a:"Gaming",o:["Gaming","Sports","Coding","Movie"]},
+{e:"📦🚚",a:"Delivery",o:["Shop","Delivery","Courier","Order"]},
+
+/* MEDIUM */
+{e:"🎬❤️",a:"Romantic Movie",o:["Action Movie","Romantic Movie","Drama","Comedy"]},
+{e:"👑🐯",a:"Tiger Zinda Hai",o:["War","Tiger Zinda Hai","Sultan","Pathaan"]},
+{e:"🕺💃🎶",a:"Dance Party",o:["Wedding","Dance Party","Concert","Festival"]},
+{e:"👨‍🎤🎤",a:"Singer",o:["Actor","Rapper","Singer","DJ"]},
+{e:"🏆🏏",a:"IPL",o:["World Cup","Test Match","IPL","Ranji"]},
+{e:"💻⌨️",a:"Coding",o:["Typing","Coding","Gaming","Design"]},
+{e:"🧠❓",a:"Quiz",o:["Puzzle","Math","Quiz","Memory"]},
+{e:"📺🍿",a:"Netflix",o:["TV","Cinema","Netflix","Prime"]},
+{e:"🚆🧳",a:"Travel",o:["Trip","Journey","Travel","Tour"]},
+{e:"🎭😂",a:"Comedy",o:["Drama","Comedy","Horror","Romance"]},
+{e:"💣🔥",a:"Action Movie",o:["Comedy","Thriller","Action Movie","Drama"]},
+{e:"🎓🎉",a:"Graduation",o:["Exam","Party","Graduation","Farewell"]},
+{e:"👨‍💼💼",a:"Office",o:["Office","Meeting","Interview","Work"]},
+{e:"📊📈",a:"Business",o:["Business","Finance","Stock","Market"]},
+{e:"📸🎞️",a:"Photography",o:["Camera","Photography","Movie","Video"]},
+
+/* HARD (Bollywood + tricky) */
+{e:"🕶️🚬",a:"KGF",o:["KGF","Pushpa","Vikram","Don"]},
+{e:"🧔🔥",a:"Animal",o:["Kabir Singh","Animal","Sultan","War"]},
+{e:"👮🔫",a:"Singham",o:["Dabangg","Singham","Sooryavanshi","Police"]},
+{e:"🧠🔍",a:"Detective",o:["Detective","Doctor","Scientist","Lawyer"]},
+{e:"🎥👑",a:"Bollywood",o:["Hollywood","Tollywood","Bollywood","Cinema"]},
+{e:"👨‍👩‍👧‍👦❤️",a:"Family",o:["Friends","Couple","Family","Love"]},
+{e:"🚓💥",a:"Police Chase",o:["Fight","Police Chase","Action","Crime"]},
+{e:"⏰💣",a:"Time Bomb",o:["Deadline","Timer","Time Bomb","Alarm"]},
+{e:"🌍🛰️",a:"Satellite",o:["Rocket","Satellite","Space","NASA"]},
+{e:"🤯📚",a:"Overthinking",o:["Stress","Study","Overthinking","Pressure"]},
+{e:"🎯🏆",a:"Winner",o:["Goal","Winner","Champion","Hero"]},
+{e:"🧑‍💻🌙",a:"Night Coder",o:["Hacker","Developer","Night Coder","Student"]},
+{e:"🧠💡",a:"Innovation",o:["Idea","Innovation","Startup","Brainstorm"]},
+{e:"🔥🚀",a:"Startup",o:["Business","Startup","Growth","Success"]},
+{e:"🕉️🙏",a:"Spiritual",o:["Religious","Meditation","Spiritual","Temple"]}
 ];
 
-let index = 0;
-let score = 0;
-let total = 0;
+// 🔀 PREPARE GAME
+shuffle(allQuiz);
 
-function loadQuestion(){
-    const q = quiz[index];
-    document.getElementById("emoji").innerText = q.emoji;
-    document.getElementById("question").innerText = "What does this mean?";
+let i=0,score=0;
+const easy=15, medium=35;
 
-    const buttons = document.querySelectorAll(".option");
-    buttons.forEach((btn,i)=>{
-        btn.innerText = q.options[i];
-        btn.className = "option";
-        btn.disabled = false;
+function levelName(){
+    if(i<easy) return "Easy";
+    if(i<medium) return "Medium";
+    return "Hard";
+}
+
+function load(){
+    if(i>=allQuiz.length){i=0;score=0;shuffle(allQuiz);}
+    document.getElementById("level").innerText="Level: "+levelName();
+
+    const q=allQuiz[i];
+    document.getElementById("emoji").innerText=q.e;
+
+    const opts=[...q.o];
+    shuffle(opts);
+
+    document.querySelectorAll(".option").forEach((b,idx)=>{
+        b.innerText=opts[idx];
+        b.className="option";
+        b.disabled=false;
     });
 
-    document.getElementById("nextBtn").style.display = "none";
+    document.getElementById("next").style.display="none";
+    document.getElementById("score").innerText="Score: "+score;
 }
 
-function checkAnswer(btn){
-    const correct = quiz[index].answer;
-    total++;
-
-    if(btn.innerText === correct){
+function check(btn){
+    const ans=allQuiz[i].a;
+    if(btn.innerText===ans){
         btn.classList.add("correct");
         score++;
-    } else {
+    }else{
         btn.classList.add("wrong");
         document.querySelectorAll(".option").forEach(b=>{
-            if(b.innerText === correct){
-                b.classList.add("correct");
-            }
+            if(b.innerText===ans) b.classList.add("correct");
         });
     }
-
     document.querySelectorAll(".option").forEach(b=>b.disabled=true);
-    document.getElementById("score").innerText = `Score: ${score} / ${total}`;
-    document.getElementById("nextBtn").style.display = "block";
+    document.getElementById("next").style.display="block";
 }
 
-function nextQuestion(){
-    index++;
-    if(index >= quiz.length){
-        index = 0;
-        score = 0;
-        total = 0;
-        document.getElementById("score").innerText = "Score: 0 / 0";
-    }
-    loadQuestion();
+function next(){
+    i++;
+    load();
 }
 
-loadQuestion();
+load();
 </script>
 
 </body>
