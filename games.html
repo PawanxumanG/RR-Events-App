@@ -101,6 +101,7 @@ body{
 .badge-ai{background:#ff9800;}
 .badge-brain{background:#3498db;}
 .badge-quick{background:#2ecc71;}
+.badge-fun{background:#9b59b6;}
 
 /* PLAY BUTTON */
 .play-btn{
@@ -119,6 +120,7 @@ body{
 .btn-ttt{background:linear-gradient(90deg,#ff9800,#ff6a00);}
 .btn-2048{background:linear-gradient(90deg,#00c6ff,#0072ff);}
 .btn-reaction{background:linear-gradient(90deg,#2ecc71,#27ae60);}
+.btn-emoji{background:linear-gradient(90deg,#9b59b6,#6c3483);}
 
 /* FOOTER BUTTON */
 .back-btn{
@@ -144,17 +146,6 @@ body{
     <p>Play • Chill • Compete</p>
 </div>
 
-<div class="container">
-
-    <!-- NOTICE -->
-    <div class="notice-box">
-        ⚠️ <b>Important Note:</b><br>
-        Poki Games have been removed because downloading games was increasing
-        app storage usage on students’ devices.  
-        To keep the app lightweight and smooth, only built-in games are available now.
-        <br><br>
-        Thank you for your understanding 💙
-    </div>
 
     <!-- FEATURED -->
     <div class="section-title">🔥 Featured Challenge</div>
@@ -208,18 +199,21 @@ body{
             ▶ Test Your Speed
         </button>
     </div>
-    
-    <!-- EMOJI QUIZ GAME -->
-<div class="card" onclick="openEmojiQuiz()">
-    <div class="card-left">
-        <div class="icon">😄</div>
-        <div>
-            <div class="title">Emoji Quiz</div>
-            <div class="subtitle">Guess the word from emojis</div>
-        </div>
+
+    <!-- EMOJI QUIZ -->
+    <div class="game-card">
+        <h2>😄 Emoji Quiz</h2>
+        <p>
+            Can you guess the word using emojis only?  
+            Sounds easy… until it’s not 😏
+        </p>
+        <span class="badge badge-fun">🎉 Fun Game</span>
+
+        <button class="play-btn btn-emoji"
+            onclick="gtag('event','play_emoji_quiz'); location.href='emoji_quiz.html'">
+            ▶ Play Emoji Quiz
+        </button>
     </div>
-    <div class="arrow">›</div>
-</div>
 
     <!-- BACK -->
     <button class="back-btn"
