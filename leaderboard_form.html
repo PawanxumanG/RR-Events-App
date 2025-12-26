@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Game Leaderboard Submission</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial;
+    background:#0f0f0f;
+    color:#ffffff;
+}
+
+/* HEADER */
+.header{
+    background:linear-gradient(90deg,#7b2cff,#2575fc);
+    padding:22px 16px;
+    text-align:center;
+}
+.header h1{
+    margin:0;
+    font-size:20px;
+    font-weight:800;
+}
+.header p{
+    margin-top:6px;
+    font-size:13px;
+    opacity:.9;
+}
+
+/* FORM CARD */
+.card{
+    margin:20px;
+    background:#161a22;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 0 30px rgba(0,0,0,.7);
+}
+
+/* INPUTS */
+label{
+    font-size:13px;
+    opacity:.8;
+}
+input, select{
+    width:100%;
+    margin-top:6px;
+    margin-bottom:14px;
+    padding:12px;
+    border-radius:12px;
+    border:none;
+    background:#0f1117;
+    color:#fff;
+    font-size:14px;
+}
+input::placeholder{
+    color:#888;
+}
+
+/* FILE */
+.file-box{
+    background:#0f1117;
+    border-radius:12px;
+    padding:12px;
+    margin-bottom:16px;
+    font-size:14px;
+}
+
+/* SUBMIT */
+.submit-btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:16px;
+    font-size:16px;
+    font-weight:800;
+    color:#fff;
+    cursor:pointer;
+    background:linear-gradient(135deg,#25D366,#128C7E);
+    box-shadow:0 0 18px rgba(37,211,102,.5);
+}
+.submit-btn:active{
+    transform:scale(.97);
+}
+
+/* NOTE */
+.note{
+    margin-top:14px;
+    font-size:12px;
+    opacity:.7;
+    text-align:center;
+}
+
+/* BACK */
+.back-btn{
+    margin-top:18px;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    background:#242424;
+    color:#fff;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🏆 Game Zone Leaderboard</h1>
+    <p>Submit your score officially</p>
+</div>
+
+<div class="card">
+
+    <label>Student Name</label>
+    <input type="text" id="name" placeholder="Enter your full name">
+
+    <label>Class / Division</label>
+    <input type="text" id="class" placeholder="Eg: FY BSc - A">
+
+    <label>Game Name</label>
+    <select id="game">
+        <option value="">Select game</option>
+        <option>2048</option>
+        <option>Tic Tac Toe</option>
+        <option>Memory Game</option>
+        <option>Other</option>
+    </select>
+
+    <label>Your Score</label>
+    <input type="number" id="score" placeholder="Enter your score">
+
+    <label>Upload Screenshot Proof</label>
+    <div class="file-box">
+        <input type="file" id="screenshot" accept="image/*">
+    </div>
+
+    <button class="submit-btn" onclick="submitForm()">
+        📤 Submit via WhatsApp
+    </button>
+
+    <div class="note">
+        Screenshot will be attached in WhatsApp before sending
+    </div>
+
+    <button class="back-btn" onclick="history.back()">⬅ Back</button>
+
+</div>
+
+<script>
+function submitForm(){
+
+    const name = document.getElementById("name").value.trim();
+    const cls = document.getElementById("class").value.trim();
+    const game = document.getElementById("game").value;
+    const score = document.getElementById("score").value;
+    const file = document.getElementById("screenshot").files[0];
+
+    if(!name || !cls || !game || !score || !file){
+        alert("Please fill all details and upload screenshot.");
+        return;
+    }
+
+    const message =
+`🏆 GAME LEADERBOARD SUBMISSION
+
+👤 Name: ${name}
+🎓 Class: ${cls}
+🎮 Game: ${game}
+⭐ Score: ${score}
+
+📎 Screenshot attached below`;
+
+    const whatsappUrl =
+        "https://wa.me/919867637326?text=" + encodeURIComponent(message);
+
+    // First open WhatsApp with message
+    window.location.href = whatsappUrl;
+
+    // Screenshot will be selected automatically by WhatsApp
+}
+</script>
+
+</body>
+</html>
