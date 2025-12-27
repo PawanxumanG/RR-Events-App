@@ -7,7 +7,7 @@
 
 <link rel="stylesheet" href="style.css">
 
-<!-- ✅ GOOGLE ANALYTICS (DEEP TRACKING) -->
+<!-- ✅ GOOGLE ANALYTICS -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9JW1V42V83"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -21,7 +21,6 @@ gtag('event','home_loaded');
 </script>
 
 <style>
-/* ===== HEADER LOGO ===== */
 .header-logo{
     width:42px;
     height:42px;
@@ -29,8 +28,6 @@ gtag('event','home_loaded');
     vertical-align:middle;
     filter:drop-shadow(0 0 6px rgba(255,255,255,0.6));
 }
-
-/* ===== DAILY STREAK ===== */
 .streak-mini{
     background:#161a22;
     border-radius:12px;
@@ -42,8 +39,6 @@ gtag('event','home_loaded');
     box-shadow:0 0 12px rgba(0,0,0,.5);
 }
 .streak-mini b{color:#ff9800}
-
-/* ===== COUNTDOWN ===== */
 .countdown-box{
     background:linear-gradient(135deg,#7b2cff,#2575fc);
     border-radius:14px;
@@ -58,8 +53,6 @@ gtag('event','home_loaded');
     font-weight:700;
     margin-top:6px;
 }
-
-/* ===== STUDENT HELPER ===== */
 .ai-box{
     background:#161a22;
     border-radius:14px;
@@ -75,7 +68,6 @@ gtag('event','home_loaded');
 }
 .ai-header h2{font-size:16px;margin:0}
 .ai-toggle{font-size:13px;opacity:.7}
-
 .ai-content{display:none;margin-top:10px}
 .ai-btn{
     width:100%;
@@ -95,8 +87,6 @@ gtag('event','home_loaded');
     color:#ffcc80;
     white-space:pre-line;
 }
-
-/* ===== MAIN GRID ===== */
 .grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -116,8 +106,6 @@ gtag('event','home_loaded');
 .btn-promo{background:linear-gradient(135deg,#7b2cff,#ff2e63)}
 .btn-album{background:linear-gradient(135deg,#ff9800,#ff2e63)}
 .btn-events{background:linear-gradient(135deg,#00b09b,#96c93d)}
-
-/* ===== SHARE APP BUTTON ===== */
 .share-app-btn{
     margin:10px 0 6px;
     width:100%;
@@ -131,28 +119,12 @@ gtag('event','home_loaded');
     cursor:pointer;
     box-shadow:0 0 16px rgba(255,152,0,.45);
 }
-.share-app-btn:active{
-    transform:scale(.98);
-}
-
-/* ===== POWERED BY ===== */
 .app-footer{
     margin-top:12px;
     padding-top:14px;
     text-align:center;
     border-top:1px solid rgba(255,255,255,0.08);
 }
-.powered-text{
-    font-size:13px;
-    color:#9aa0a6;
-}
-.powered-brand{
-    font-size:13px;
-    color:#e6e6e6;
-    font-weight:600;
-}
-
-/* ===== NOTICE UPDATE TOGGLE ===== */
 .update-header{
     display:flex;
     justify-content:space-between;
@@ -161,25 +133,33 @@ gtag('event','home_loaded');
     cursor:pointer;
 }
 .update-header b{color:#ff9800}
-.update-toggle{
-    font-size:13px;
-    color:#ff9800;
-}
+.update-toggle{font-size:13px;color:#ff9800}
 .update-content{
     display:none;
     margin-top:10px;
     font-size:14px;
     line-height:1.6;
 }
+
+/* ===== HOME POSTER ===== */
+.home-poster{
+    margin:16px 0 18px;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 0 20px rgba(0,0,0,.6);
+}
+.home-poster img{
+    width:100%;
+    display:block;
+}
 </style>
 </head>
 
 <body>
 
-<!-- ===== HEADER ===== -->
 <div class="header">
   <h1>
-    <img src="vishnu1.png" class="header-logo" alt="RR College Logo">
+    <img src="vishnu1.png" class="header-logo">
     RR INTERNATIONAL COLLEGE
   </h1>
   <p>Notices & Updates</p>
@@ -191,19 +171,11 @@ gtag('event','home_loaded');
 👨‍🏫 OUR CHAIRMAN – Shri R. R. Pardeshi
 </button>
 
-<!-- ================= NOTICE SECTION ================= -->
 <div class="event">
   <h2>📢 IMPORTANT NOTICE</h2>
-
-  <p>
-    All students are instructed to <b>open this app daily</b> for official notices,
-    event updates, and important announcements.
-  </p>
-<p>
-💯🔥New Game Added In RR Games Zone "Emoji Quiz"</p>
-  <p class="text-muted">
-    📌 All updates will be published only in this app.
-  </p>
+  <p>All students are instructed to <b>open this app daily</b>.</p>
+  <p>💯🔥 New Game Added In RR Games Zone "Emoji Quiz"</p>
+  <p class="text-muted">📌 All updates will be published only in this app.</p>
 
   <div class="update-header" onclick="toggleUpdates()">
     <b>🆕 New App Updates (v2.1)</b>
@@ -211,19 +183,18 @@ gtag('event','home_loaded');
   </div>
 
   <div class="update-content" id="updateContent">
-    <p>
-      We have upgraded the <b>RR Events App</b> with better performance
-      and future-ready systems.
-    </p>
-
-    <p>
-      🚀 <b>What’s New:</b><br>
-      • Force update system added 🔐<br>
-      • Image & PDF download support ⬇️<br>
-      • Improved Event Album 📸<br>
-      • Faster loading & stability ✨
+    <p>🚀 <b>What’s New:</b><br>
+      • Force update system 🔐<br>
+      • Image & PDF download ⬇️<br>
+      • Improved Album 📸<br>
+      • Faster loading ✨
     </p>
   </div>
+</div>
+
+<!-- ✅ POSTER -->
+<div class="home-poster">
+  <img src="stage.jpg" alt="Karmanya Stage Poster">
 </div>
 
 <div class="streak-mini">
@@ -241,10 +212,9 @@ gtag('event','home_loaded');
   <h2>🤖 Student Helper</h2>
   <span class="ai-toggle" id="aiToggle">Tap to open</span>
 </div>
-
 <div class="ai-content" id="aiContent">
-  <button class="ai-btn ai-pay" onclick="aiReply('payment')">💳 How to pay for Karmanya?</button>
-  <button class="ai-btn ai-game" onclick="aiReply('ai_game')">🎮 How to play with RR AI Bot?</button>
+  <button class="ai-btn ai-pay" onclick="aiReply('payment')">💳 How to pay?</button>
+  <button class="ai-btn ai-game" onclick="aiReply('ai_game')">🎮 How to play?</button>
   <div class="ai-answer" id="aiAnswer"></div>
 </div>
 </div>
@@ -256,14 +226,12 @@ gtag('event','home_loaded');
   <button class="btn-events" onclick="trackAndGo('events')">📅 Events</button>
 </div>
 
-<!-- ✅ SHARE APP BUTTON (EXACT MARKED PLACE) -->
 <button class="share-app-btn" onclick="location.href='shareapp.html'">
 📤 Share RR Events App
 </button>
 
 <div class="app-footer">
-  <span class="powered-text">Powered by </span>
-  <span class="powered-brand">RR International College</span>
+Powered by <b>RR International College</b>
 </div>
 
 </div>
@@ -283,29 +251,26 @@ const eventDate=new Date("2025-12-30T23:59:59").getTime();
 setInterval(()=>{
   const diff=eventDate-Date.now();
   document.getElementById("countdown").innerText=
-  diff<=0 ? "🎉 Countdown Ended!" :
+  diff<=0?"🎉 Countdown Ended!":
   `${Math.floor(diff/86400000)}d : ${Math.floor(diff%86400000/3600000)}h : ${Math.floor(diff%3600000/60000)}m : ${Math.floor(diff%60000/1000)}s`;
 },1000);
 
 function toggleAI(){
-  const box=document.getElementById("aiContent");
+  const b=document.getElementById("aiContent");
   const t=document.getElementById("aiToggle");
-  box.style.display=box.style.display==="block"?"none":"block";
-  t.innerText=box.style.display==="block"?"Tap to close":"Tap to open";
+  b.style.display=b.style.display==="block"?"none":"block";
+  t.innerText=b.style.display==="block"?"Tap to close":"Tap to open";
 }
-
 function toggleUpdates(){
-  const box=document.getElementById("updateContent");
+  const b=document.getElementById("updateContent");
   const t=document.getElementById("updateToggle");
-  box.style.display=box.style.display==="block"?"none":"block";
-  t.innerText=box.style.display==="block"?"Tap to close":"Tap to open";
+  b.style.display=b.style.display==="block"?"none":"block";
+  t.innerText=b.style.display==="block"?"Tap to close":"Tap to open";
 }
-
-function aiReply(type){
-  document.getElementById("aiAnswer").innerText =
-  type==="payment"
-  ? "Open Karmanya → Scan QR → Pay ₹500"
-  : "Open Games Zone → Tic Tac Toe → Hard Mode 🔥";
+function aiReply(t){
+  document.getElementById("aiAnswer").innerText=
+  t==="payment"?"Open Karmanya → Scan QR → Pay ₹500":
+  "Games Zone → Tic Tac Toe → Hard Mode 🔥";
 }
 function trackAndGo(t){
   if(t==='karmanya')location.href='karmanya.html';
